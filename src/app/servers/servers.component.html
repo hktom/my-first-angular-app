@@ -18,7 +18,10 @@
     Add server
   </button>
   <br />
-  <app-server *ngFor="let server of servers; let i=index"></app-server>
+  <app-server
+    *ngFor="let server of servers; let i = index"
+    [serverName]="server"
+  ></app-server>
   <!-- <p *ngIf="serverCreated; else noServer">{{ serverCreationStatus }}</p>
   <ng-template #noServer>
     <p>No server was created!</p>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-servers',
@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class ServersComponent {
   alowServer = true;
   serverCreationStatus = 'No server was created!';
-  serverCreated = false;
+  @Output() serverCreated = new EventEmitter<string>();
   servers = ['Testserver', 'Testserver 2'];
 
   constructor() {
@@ -19,8 +19,9 @@ export class ServersComponent {
 
   onCreateServer() {
     // this.serverCreationStatus = 'Server was created!';
-    this.servers.push(this.serverCreationStatus);
-    this.serverCreated = true;
+    this.servers=[this.serverCreationStatus, ...this.servers];
+    this.serverCreated.emit(this.serverCreationStatus);
+    // this.serverCreated = true;
   }
 
   onUpdateServerName(event: Event) {
